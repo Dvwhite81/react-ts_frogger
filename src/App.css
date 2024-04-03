@@ -38,7 +38,7 @@
 }
 
 .row-obstacle {
-  height: var(--square-size);
+  height: var(--square-size) !important;
   position: absolute;
   z-index: 2;
 }

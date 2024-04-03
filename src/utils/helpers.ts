@@ -42,10 +42,32 @@ export const getObstacleSideStyle = (obstacle: ObstacleType) => {
 
   if (direction === 'right') {
     const position = 0 - SQUARE_SIZE * width;
-    return `${position}px`;
+    return position;
   } else if (direction === 'left') {
-    return `${BOARD_SIZE}px`;
+    return BOARD_SIZE;
   } else {
-    return '0px';
+    return 0;
+  }
+};
+
+export const getNextImage = (img: string) => {
+  const fileName = img.split('.')[0];
+  const index = fileName.length - 2;
+
+  const [fileStart, numString] = [
+    fileName.substring(0, index),
+    fileName.substring(index),
+  ];
+  let num = parseInt(numString, 10);
+  const nextNum = num + 1;
+
+  if (nextNum < 10) {
+    return `${fileStart}0${nextNum}.png`;
+  } else {
+    if (nextNum > 20) {
+      return `${fileStart}01.png`;
+    } else {
+      return `${fileStart}${nextNum}.png`;
+    }
   }
 };

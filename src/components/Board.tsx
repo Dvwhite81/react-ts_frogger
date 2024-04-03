@@ -6,12 +6,19 @@ interface BoardProps {
 }
 
 const Board = ({ currentLevel }: BoardProps) => {
-  const { level } = currentLevel;
+  const { id, level } = currentLevel;
+  const speed = 100 * (id / 10);
 
   return (
     <div className="board">
       {level.grid.map((row, rowIndex) => (
-        <Row key={rowIndex} level={level} row={row} rowIndex={rowIndex} />
+        <Row
+          key={rowIndex}
+          level={level}
+          speed={speed}
+          row={row}
+          rowIndex={rowIndex}
+        />
       ))}
     </div>
   );

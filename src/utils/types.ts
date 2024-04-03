@@ -5,6 +5,7 @@ export interface ObstacleType {
   obstacleImg: string | null;
   width: number;
   group: number | null;
+  isSprite: boolean;
 }
 
 export interface LevelObject {
