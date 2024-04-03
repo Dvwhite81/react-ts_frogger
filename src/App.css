@@ -1,33 +1,35 @@
-#root {
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+:root {
+  --num-rows: 13;
+  --sidebar-width: 20vw;
+  --board-height: 90vh;
+  --square-size: calc(var(--board-height) / var(--num-rows));
+  --light-blue-bg: skyblue;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.app {
+  background-color: var(--light-blue-bg);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.board {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.row {
+  display: flex;
+}
+
+.square {
+  height: var(--square-size);
+  width: var(--square-size);
+}
+
+.square-background {
+  height: 100%;
+  width: 100%;
 }

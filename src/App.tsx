@@ -1,18 +1,14 @@
-import Logo2 from './assets/images/Logo-Circle.png';
-import Logo from '/Logo-Circle.png';
+import { useState } from 'react';
+import { LEVELS } from './utils/levels';
+import Board from './components/Board';
 import './App.css';
 
 function App() {
+  const [currentLevel, setCurrentLevel] = useState(LEVELS[0]);
   return (
-    <>
-      <h1>Hello</h1>
-      <a href="https://vitejs.dev" target="_blank">
-        <img src={Logo} className="logo" alt="Vite logo" />
-      </a>
-      <a href="https://react.dev" target="_blank">
-        <img src={Logo2} className="logo react" alt="React logo" />
-      </a>
-    </>
+    <div className="app">
+      <Board currentLevel={currentLevel} />
+    </div>
   );
 }
 
