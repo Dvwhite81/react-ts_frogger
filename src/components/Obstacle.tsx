@@ -10,7 +10,7 @@ interface ObstacleProps {
 }
 
 const Obstacle = ({ obstacle, speed }: ObstacleProps) => {
-  const { direction, obstacleImg, width, isSprite } = obstacle;
+  const { direction, obstacleImg, width, group, isSprite } = obstacle;
   if (!direction || !obstacleImg) return;
 
   const sideStyle = getObstacleSideStyle(obstacle);
@@ -57,9 +57,26 @@ const Obstacle = ({ obstacle, speed }: ObstacleProps) => {
     return () => clearInterval(interval);
   }, [img]);
 
+  const obstacleElement = (index: number) => (
+    <img
+      key={index}
+      className={`obstacle-img ${direction}`}
+      alt="obstacle"
+      src={img}
+    />
+  );
+
+  const obstacleGroup = [obstacleElement(0)];
+
+  if (group) {
+    for (let i = 1; i < group; i++) {
+      obstacleGroup.push(obstacleElement(i));
+    }
+  }
+
   return (
     <div className="row-obstacle" style={{ top: 0, left: `${leftPosition}px` }}>
-      <img className={`obstacle-img ${direction}`} alt="obstacle" src={img} />
+      {obstacleGroup}
     </div>
   );
 };

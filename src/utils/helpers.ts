@@ -1,4 +1,4 @@
-import { BOARD_SIZE, SCREEN_WIDTH, SQUARE_SIZE } from './constants';
+import { BOARD_SIZE, SQUARE_SIZE } from './constants';
 import { LevelObject, ObstacleType } from './types';
 
 export const getSquareBackground = (num: number) => {
