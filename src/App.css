@@ -22,14 +22,27 @@
 
 .row {
   display: flex;
+  overflow: hidden;
+  position: relative;
 }
 
 .square {
   height: var(--square-size);
+  position: relative;
   width: var(--square-size);
 }
 
 .square-background {
   height: 100%;
   width: 100%;
+}
+
+.row-obstacle {
+  height: var(--square-size);
+  position: absolute;
+  z-index: 2;
+}
+
+.obstacle-img {
+  height: 100%;
 }

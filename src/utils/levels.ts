@@ -6,32 +6,6 @@
 5 - road
 */
 
-const getSquareBackground = (num: number) => {
-  let img;
-
-  switch (num) {
-    case 1:
-      img = '/bush-closed.png';
-      break;
-    case 2:
-      img = '/bush-open.png';
-      break;
-    case 3:
-      img = '/water.png';
-      break;
-    case 4:
-      img = '/grass.png';
-      break;
-    case 5:
-      img = '/road.png';
-      break;
-    default:
-      break;
-  }
-
-  return img;
-};
-
 const levelOne = {
   grid: [
     [1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1],
@@ -49,26 +23,59 @@ const levelOne = {
     [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4],
   ],
   obstacles: [
-    { direction: null, obstacle: null, group: null },
-    { direction: 'right', obstacle: 'log-4', group: null },
-    { direction: 'left', obstacle: 'turtle-1-left', group: 2 },
-    { direction: 'right', obstacle: 'log-5', group: null },
-    { direction: 'left', obstacle: 'turtle-1-left', group: 3 },
-    { direction: 'right', obstacle: 'log-3', group: null },
-    { direction: null, obstacle: null, group: null },
-    { direction: 'left', obstacle: 'truck-4-left', group: null },
-    { direction: 'right', obstacle: 'car-blue-right', group: null },
-    { direction: 'left', obstacle: 'car-green-left', group: null },
-    { direction: 'right', obstacle: 'truck-3-right', group: null },
-    { direction: 'left', obstacle: 'car-yellow-left', group: null },
+    { direction: null, obstacleImg: null, width: 0, group: null },
+    { direction: 'right', obstacleImg: '/log-4.png', width: 4, group: null },
+    {
+      direction: 'left',
+      obstacleImg: '/turtle-1-left.png',
+      width: 1,
+      group: 2,
+    },
+    { direction: 'right', obstacleImg: '/log-5.png', width: 5, group: null },
+    {
+      direction: 'left',
+      obstacleImg: '/turtle-1-left.png',
+      width: 1,
+      group: 3,
+    },
+    { direction: 'right', obstacleImg: '/log-3.png', width: 3, group: null },
+    { direction: null, obstacleImg: null, width: 0, group: null },
+    {
+      direction: 'left',
+      obstacleImg: '/truck-4-left.png',
+      width: 4,
+      group: null,
+    },
+    {
+      direction: 'right',
+      obstacleImg: '/car-blue-right.png',
+      width: 2,
+      group: null,
+    },
+    {
+      direction: 'left',
+      obstacleImg: '/car-green-left.png',
+      width: 2,
+      group: null,
+    },
+    {
+      direction: 'right',
+      obstacleImg: '/truck-3-right.png',
+      width: 3,
+      group: null,
+    },
+    {
+      direction: 'left',
+      obstacleImg: '/car-yellow-left.png',
+      width: 2,
+      group: null,
+    },
   ],
 };
 
-const LEVELS = [
+export const LEVELS = [
   {
     id: 1,
     level: levelOne,
   },
 ];
-
-export { getSquareBackground, LEVELS };

@@ -1,18 +1,24 @@
-import { RowArray } from '../utils/types';
+import { LevelObject, RowArray } from '../utils/types';
 import Square from './Square';
+import Obstacle from './Obstacle';
 
 interface RowProps {
+  level: LevelObject;
   row: RowArray;
   rowIndex: number;
 }
 
-const Row = ({ row, rowIndex }: RowProps) => {
+const Row = ({ level, row, rowIndex }: RowProps) => {
+  const rowObstacle = level.obstacles[rowIndex];
+
   return (
     <div className="row" id={`row-${rowIndex}`}>
       {row.map((square, squareIndex) => {
         const squareId = `square-${rowIndex}-${squareIndex}`;
         return <Square key={squareIndex} square={square} squareId={squareId} />;
       })}
+
+      {rowObstacle && <Obstacle obstacle={rowObstacle} />}
     </div>
   );
 };

@@ -2,7 +2,8 @@ export type RowArray = Array<number>;
 
 export interface ObstacleType {
   direction: string | null;
-  obstacle: string | null;
+  obstacleImg: string | null;
+  width: number;
   group: number | null;
 }
 

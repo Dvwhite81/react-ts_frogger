@@ -1,4 +1,4 @@
-import { getSquareBackground } from '../utils/levels';
+import { getSquareBackground } from '../utils/helpers';
 
 interface SquareProps {
   square: number;
@@ -7,6 +7,7 @@ interface SquareProps {
 
 const Square = ({ square, squareId }: SquareProps) => {
   const imgUrl = getSquareBackground(square);
+
   return (
     <div className="square" id={squareId}>
       <img className="square-background" alt="square background" src={imgUrl} />

@@ -7,12 +7,11 @@ interface BoardProps {
 
 const Board = ({ currentLevel }: BoardProps) => {
   const { level } = currentLevel;
-  const { grid } = level;
 
   return (
     <div className="board">
-      {grid.map((row, rowIndex) => (
-        <Row key={rowIndex} row={row} rowIndex={rowIndex} />
+      {level.grid.map((row, rowIndex) => (
+        <Row key={rowIndex} level={level} row={row} rowIndex={rowIndex} />
       ))}
     </div>
   );
