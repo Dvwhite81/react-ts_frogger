@@ -80,7 +80,8 @@ const Obstacle = ({
     if (!isSprite) return;
 
     const animate = () => {
-      const nextImg = getNextImage(img);
+      const isFrog = false;
+      const nextImg = getNextImage(img, isFrog);
       setImg(nextImg);
     };
 

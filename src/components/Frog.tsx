@@ -21,8 +21,68 @@ const Frog = () => {
   // const [isMoving, setIsMoving] = useState(false);
 
   const animate = () => {
-    const nextImg = getNextImage(img);
+    const isFrog = true;
+    const nextImg = getNextImage(img, isFrog);
+    console.log('nextImg:', nextImg);
     setImg(nextImg);
+  };
+
+  const animateOneCycle = (step: number) => {
+    const interval = 20;
+    let newBottom = bottomPosition;
+
+    setTimeout(() => {
+      console.log('2');
+      setImg('/frog-move-02.png');
+      newBottom += step;
+      setBottomPosition(newBottom);
+    }, interval);
+    setTimeout(() => {
+      console.log('3');
+      setImg('/frog-move-03.png');
+      newBottom += step;
+      setBottomPosition(newBottom);
+    }, interval * 2);
+    setTimeout(() => {
+      console.log('4');
+      setImg('/frog-move-04.png');
+      newBottom += step;
+      setBottomPosition(newBottom);
+    }, interval * 3);
+    setTimeout(() => {
+      console.log('5');
+      setImg('/frog-move-05.png');
+      newBottom += step;
+      setBottomPosition(newBottom);
+    }, interval * 4);
+    setTimeout(() => {
+      console.log('6');
+      setImg('/frog-move-06.png');
+      newBottom += step;
+      setBottomPosition(newBottom);
+    }, interval * 5);
+    setTimeout(() => {
+      console.log('7');
+      setImg('/frog-move-07.png');
+      newBottom += step;
+      setBottomPosition(newBottom);
+    }, interval * 6);
+    setTimeout(() => {
+      console.log('1');
+      setImg('/frog-move-01.png');
+      newBottom += step;
+      setBottomPosition(newBottom);
+    }, interval * 7);
+  };
+
+  const moveWithAnimate = (newBottom: number) => {
+    const difference = Math.abs(newBottom - bottomPosition);
+    const step = difference / 7;
+    console.log('bottomPosition:', bottomPosition);
+    console.log('newBottom:', newBottom);
+    console.log('difference:', difference);
+    console.log('step:', step);
+    animateOneCycle(step);
   };
 
   const move = (key: string) => {
@@ -37,7 +97,7 @@ const Frog = () => {
         const isBlocked = possibleBottom > BOARD_SIZE - SQUARE_SIZE;
         console.log('isBlocked:', isBlocked);
         const newBottom = isBlocked ? bottomPosition : possibleBottom;
-        setBottomPosition(newBottom);
+        moveWithAnimate(newBottom);
         break;
       }
       case 'ArrowDown': {

@@ -55,8 +55,10 @@ export const getObstacleSideStyle = (obstacle: ObstacleType) => {
   }
 };
 
-export const getNextImage = (img: string) => {
+export const getNextImage = (img: string, isFrog: boolean) => {
+  console.log('getNextImage');
   const fileName = img.split('.')[0];
+  console.log('fileName:', fileName);
   const index = fileName.length - 2;
 
   const [fileStart, numString] = [
@@ -64,14 +66,26 @@ export const getNextImage = (img: string) => {
     fileName.substring(index),
   ];
   let num = parseInt(numString, 10);
+  console.log('num:', num);
   const nextNum = num + 1;
+  console.log('nextNum:', nextNum);
 
   if (nextNum < 10) {
-    return `${fileStart}0${nextNum}.png`;
-  } else {
-    if (nextNum > 20) {
+    console.log('first');
+    if (isFrog && nextNum > 7) {
+      console.log('second over limit nextnum:', nextNum);
       return `${fileStart}01.png`;
     } else {
+      console.log('third');
+      return `${fileStart}0${nextNum}.png`;
+    }
+  } else {
+    console.log('fourth');
+    if (!isFrog && nextNum > 20) {
+      console.log('fifth over limit nextnum:', nextNum);
+      return `${fileStart}01.png`;
+    } else {
+      console.log('sixth');
       return `${fileStart}${nextNum}.png`;
     }
   }
