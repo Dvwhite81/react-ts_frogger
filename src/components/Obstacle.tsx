@@ -13,10 +13,16 @@ import GroupObstacle from './GroupObstacle';
 interface ObstacleProps {
   obstacle: ObstacleType;
   isStarted: boolean;
+  hasBeenPaused: boolean;
   speed: number;
 }
 
-const Obstacle = ({ obstacle, isStarted, speed }: ObstacleProps) => {
+const Obstacle = ({
+  obstacle,
+  isStarted,
+  hasBeenPaused,
+  speed,
+}: ObstacleProps) => {
   const { direction, obstacleImg, width, group, isSprite } = obstacle;
   if (!direction || !obstacleImg) return;
 
@@ -25,7 +31,6 @@ const Obstacle = ({ obstacle, isStarted, speed }: ObstacleProps) => {
   const [leftPosition, setLeftPosition] = useState(sideStyle);
   const [img, setImg] = useState(obstacleImg);
   const [isMoving, setIsMoving] = useState(false);
-  const [hasBeenPaused, setHasBeenPaused] = useState(false);
 
   const startDelay = getRandomStartDelay();
 

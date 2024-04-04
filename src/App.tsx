@@ -6,19 +6,33 @@ import './App.css';
 function App() {
   const [currentLevel, setCurrentLevel] = useState(LEVELS[0]);
   const [isStarted, setIsStarted] = useState(false);
+  const [hasBeenPaused, setHasBeenPaused] = useState(false);
 
-  const toggleStart = () => {
-    setIsStarted(!isStarted);
+  const start = () => {
+    setIsStarted(true);
   };
 
-  const btnText = isStarted ? 'Stop' : 'Start';
+  const pause = () => {
+    setIsStarted(false);
+    setHasBeenPaused(true);
+  };
 
   return (
     <div className="app">
-      <Board currentLevel={currentLevel} isStarted={isStarted} />
-      <button type="button" className="start-btn" onClick={toggleStart}>
-        {btnText}
-      </button>
+      <Board
+        currentLevel={currentLevel}
+        isStarted={isStarted}
+        hasBeenPaused={hasBeenPaused}
+      />
+      {isStarted ? (
+        <button type="button" className="start-btn" onClick={pause}>
+          Pause
+        </button>
+      ) : (
+        <button type="button" className="start-btn" onClick={start}>
+          Start
+        </button>
+      )}
     </div>
   );
 }

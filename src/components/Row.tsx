@@ -5,12 +5,20 @@ import Obstacle from './Obstacle';
 interface RowProps {
   level: LevelObject;
   isStarted: boolean;
+  hasBeenPaused: boolean;
   speed: number;
   row: RowArray;
   rowIndex: number;
 }
 
-const Row = ({ level, isStarted, speed, row, rowIndex }: RowProps) => {
+const Row = ({
+  level,
+  isStarted,
+  hasBeenPaused,
+  speed,
+  row,
+  rowIndex,
+}: RowProps) => {
   const rowObstacle = level.obstacles[rowIndex];
 
   return (
@@ -21,7 +29,12 @@ const Row = ({ level, isStarted, speed, row, rowIndex }: RowProps) => {
       })}
 
       {rowObstacle && (
-        <Obstacle obstacle={rowObstacle} isStarted={isStarted} speed={speed} />
+        <Obstacle
+          obstacle={rowObstacle}
+          isStarted={isStarted}
+          hasBeenPaused={hasBeenPaused}
+          speed={speed}
+        />
       )}
     </div>
   );

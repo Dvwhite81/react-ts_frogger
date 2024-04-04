@@ -4,9 +4,10 @@ import Row from './Row';
 interface BoardProps {
   currentLevel: LevelType;
   isStarted: boolean;
+  hasBeenPaused: boolean;
 }
 
-const Board = ({ currentLevel, isStarted }: BoardProps) => {
+const Board = ({ currentLevel, isStarted, hasBeenPaused }: BoardProps) => {
   const { id, level } = currentLevel;
   const speed = 100 * (id / 10);
 
@@ -17,6 +18,7 @@ const Board = ({ currentLevel, isStarted }: BoardProps) => {
           key={rowIndex}
           level={level}
           isStarted={isStarted}
+          hasBeenPaused={hasBeenPaused}
           speed={speed}
           row={row}
           rowIndex={rowIndex}
