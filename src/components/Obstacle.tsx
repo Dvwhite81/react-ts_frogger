@@ -25,18 +25,23 @@ const Obstacle = ({ obstacle, isStarted, speed }: ObstacleProps) => {
   const [leftPosition, setLeftPosition] = useState(sideStyle);
   const [img, setImg] = useState(obstacleImg);
   const [isMoving, setIsMoving] = useState(false);
+  const [hasBeenPaused, setHasBeenPaused] = useState(false);
 
   const startDelay = getRandomStartDelay();
 
   useEffect(() => {
     if (isStarted) {
-      setTimeout(() => {
+      if (hasBeenPaused) {
         setIsMoving(true);
-      }, startDelay);
+      } else {
+        setTimeout(() => {
+          setIsMoving(true);
+        }, startDelay);
+      }
     } else {
       setIsMoving(false);
     }
-  }, [isStarted, setIsMoving]);
+  });
 
   useEffect(() => {
     const move = () => {
