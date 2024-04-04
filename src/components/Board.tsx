@@ -1,4 +1,5 @@
 import { LevelType } from '../utils/types';
+import Frog from './Frog';
 import Row from './Row';
 
 interface BoardProps {
@@ -24,6 +25,7 @@ const Board = ({ currentLevel, isStarted, hasBeenPaused }: BoardProps) => {
           rowIndex={rowIndex}
         />
       ))}
+      <Frog />
     </div>
   );
 };

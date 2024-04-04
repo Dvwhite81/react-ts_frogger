@@ -1,4 +1,9 @@
-import { BOARD_SIZE, SQUARE_SIZE } from './constants';
+import {
+  ARROW_BTNS,
+  BOARD_SIZE,
+  BOTTOM_OFFSET,
+  SQUARE_SIZE,
+} from './constants';
 import { LevelObject, ObstacleType } from './types';
 
 export const getSquareBackground = (num: number) => {
@@ -74,4 +79,17 @@ export const getNextImage = (img: string) => {
 
 export const getRandomStartDelay = () => {
   return Math.floor(Math.random() * 3000);
+};
+
+export const getFrogStartPosition = () => {
+  const bottomPosition = BOTTOM_OFFSET;
+  const leftPosition = BOARD_SIZE / 2;
+  return {
+    bottom: bottomPosition,
+    left: leftPosition,
+  };
+};
+
+export const isArrowPress = (key: string) => {
+  return ARROW_BTNS.includes(key);
 };
