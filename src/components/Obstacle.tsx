@@ -7,6 +7,8 @@ import {
 } from '../utils/helpers';
 import { ObstacleType } from '../utils/types';
 import { BOARD_SIZE, SQUARE_SIZE } from '../utils/constants';
+import SingleObstacle from './SingleObstacle';
+import GroupObstacle from './GroupObstacle';
 
 interface ObstacleProps {
   obstacle: ObstacleType;
@@ -81,26 +83,13 @@ const Obstacle = ({ obstacle, isStarted, speed }: ObstacleProps) => {
     return () => clearInterval(interval);
   }, [img, isStarted, isMoving]);
 
-  const obstacleElement = (index: number) => (
-    <img
-      key={index}
-      className={`obstacle-img ${direction}`}
-      alt="obstacle"
-      src={img}
-    />
-  );
-
-  const obstacleGroup = [obstacleElement(0)];
-
-  if (group) {
-    for (let i = 1; i < group; i++) {
-      obstacleGroup.push(obstacleElement(i));
-    }
-  }
-
   return (
     <div className="row-obstacle" style={{ top: 0, left: `${leftPosition}px` }}>
-      {obstacleGroup}
+      {group ? (
+        <GroupObstacle group={group} direction={direction} img={img} />
+      ) : (
+        <SingleObstacle index={0} direction={direction} img={img} />
+      )}
     </div>
   );
 };
