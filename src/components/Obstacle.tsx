@@ -1,15 +1,20 @@
 import { useEffect, useState } from 'react';
 
-import { getNextImage, getObstacleSideStyle } from '../utils/helpers';
+import {
+  getNextImage,
+  getObstacleSideStyle,
+  getRandomStartDelay,
+} from '../utils/helpers';
 import { ObstacleType } from '../utils/types';
 import { BOARD_SIZE, SQUARE_SIZE } from '../utils/constants';
 
 interface ObstacleProps {
   obstacle: ObstacleType;
+  isStarted: boolean;
   speed: number;
 }
 
-const Obstacle = ({ obstacle, speed }: ObstacleProps) => {
+const Obstacle = ({ obstacle, isStarted, speed }: ObstacleProps) => {
   const { direction, obstacleImg, width, group, isSprite } = obstacle;
   if (!direction || !obstacleImg) return;
 
@@ -17,6 +22,19 @@ const Obstacle = ({ obstacle, speed }: ObstacleProps) => {
 
   const [leftPosition, setLeftPosition] = useState(sideStyle);
   const [img, setImg] = useState(obstacleImg);
+  const [isMoving, setIsMoving] = useState(false);
+
+  const startDelay = getRandomStartDelay();
+
+  useEffect(() => {
+    if (isStarted) {
+      setTimeout(() => {
+        setIsMoving(true);
+      }, startDelay);
+    } else {
+      setIsMoving(false);
+    }
+  }, [isStarted, setIsMoving]);
 
   useEffect(() => {
     const move = () => {
@@ -27,7 +45,9 @@ const Obstacle = ({ obstacle, speed }: ObstacleProps) => {
           setLeftPosition((prev) => prev + 1);
         }
       } else if (direction === 'left') {
-        if (leftPosition - 1 < 0 - SQUARE_SIZE * width) {
+        const groupWidth = group ? width * group : width;
+
+        if (leftPosition - 1 < 0 - SQUARE_SIZE * groupWidth) {
           setLeftPosition(sideStyle);
         } else {
           setLeftPosition((prev) => prev - 1);
@@ -36,11 +56,13 @@ const Obstacle = ({ obstacle, speed }: ObstacleProps) => {
     };
 
     const interval = setInterval(() => {
-      move();
+      if (isMoving) {
+        move();
+      }
     }, speed);
 
     return () => clearInterval(interval);
-  }, [leftPosition]);
+  }, [leftPosition, isMoving]);
 
   useEffect(() => {
     if (!isSprite) return;
@@ -51,11 +73,13 @@ const Obstacle = ({ obstacle, speed }: ObstacleProps) => {
     };
 
     const interval = setInterval(() => {
-      animate();
+      if (isMoving) {
+        animate();
+      }
     }, 400);
 
     return () => clearInterval(interval);
-  }, [img]);
+  }, [img, isStarted, isMoving]);
 
   const obstacleElement = (index: number) => (
     <img

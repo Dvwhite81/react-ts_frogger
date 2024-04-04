@@ -2,14 +2,23 @@ import { useState } from 'react';
 import { LEVELS } from './utils/levels';
 import Board from './components/Board';
 import './App.css';
-import { SCREEN_WIDTH } from './utils/constants';
 
 function App() {
   const [currentLevel, setCurrentLevel] = useState(LEVELS[0]);
-  console.log('screen width:', SCREEN_WIDTH);
+  const [isStarted, setIsStarted] = useState(false);
+
+  const toggleStart = () => {
+    setIsStarted(!isStarted);
+  };
+
+  const btnText = isStarted ? 'Stop' : 'Start';
+
   return (
     <div className="app">
-      <Board currentLevel={currentLevel} />
+      <Board currentLevel={currentLevel} isStarted={isStarted} />
+      <button type="button" className="start-btn" onClick={toggleStart}>
+        {btnText}
+      </button>
     </div>
   );
 }

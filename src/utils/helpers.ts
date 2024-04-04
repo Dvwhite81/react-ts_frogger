@@ -71,3 +71,7 @@ export const getNextImage = (img: string) => {
     }
   }
 };
+
+export const getRandomStartDelay = () => {
+  return Math.floor(Math.random() * 3000);
+};
